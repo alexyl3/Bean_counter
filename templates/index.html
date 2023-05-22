@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<meta charset="UTF-8">
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    {{ form.csrf_token }}
+    <p>
+        {{ form.main_beans.label }}<br>
+        {{ form.main_beans(class="form-control") }}<br>
+        {% for error in form.main_beans.errors %}
+    <p class="alert alert-danger" role="alert">
+        {{ error }}
+    </p>
+    {% endfor %}
+    </p>
+    <p>
+        {{ form.add_beans.label }}<br>
+        {{ form.add_beans(class="form-control") }}<br>
+        {% for error in form.add_beans.errors %}
+    <p class="alert alert-danger" role="alert">
+        {{ error }}
+    </p>
+    {% endfor %}
+    </p>
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+    {% if message %}
+        <div class="alert alert-danger" role="alert">
+                    {{ message }}
+        </div>
+    {% endif %}
+</form>
+{% if result %}
+        <h2>Ваш месячный заработок</h2>
+        <h4>{{result}}$</h4>
+    {% endif %}
+{% endblock %}
